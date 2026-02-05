@@ -2,77 +2,175 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Chat with Me — AI Resume</title>
+  <title>AI Resume — [Your Name]</title>
 
-  <!-- LinkedIn preview -->
+  <!-- LinkedIn Preview -->
   <meta property="og:title" content="My Resume Is a Chatbot" />
-  <meta property="og:description" content="Talk to an AI version of me. Ask about my experience, projects, and what I’m looking for next." />
+  <meta property="og:description" content="Enter the interface. Talk to an AI version of me." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://TON618-RB/ai-resume" />
-  <meta property="og:image" content="https://TON618-RB/ai-resume/preview.png" />
+  <meta property="og:image" content="preview.png" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
+    :root {
+      --neon: #00ffe1;
+      --accent: #facc15;
+      --bg: #020617;
+      --panel: rgba(2, 6, 23, 0.85);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #0f172a;
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, rgba(250,204,21,0.08), transparent 40%),
+        linear-gradient(180deg, #020617, #000);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       color: #e5e7eb;
       display: flex;
-      justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      margin: 0;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* subtle animated grid */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(circle at center, black 40%, transparent 75%);
+      pointer-events: none;
+    }
+
+    .terminal {
+      position: relative;
+      max-width: 720px;
+      padding: 56px;
+      background: var(--panel);
+      border-radius: 20px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.05),
+        0 40px 80px rgba(0,0,0,0.7),
+        inset 0 0 80px rgba(0,255,225,0.05);
       text-align: center;
     }
-    .card {
-      max-width: 520px;
-      padding: 40px;
-      background: #020617;
-      border-radius: 16px;
-      box-shadow: 0 20px 40px rgba(0,0,0,.4);
+
+    .status {
+      display: inline-block;
+      margin-bottom: 24px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--neon);
+      border: 1px solid rgba(0,255,225,0.35);
+      box-shadow: 0 0 12px rgba(0,255,225,0.25);
     }
+
     h1 {
-      font-size: 2rem;
-      margin-bottom: 12px;
+      font-size: 2.6rem;
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
     }
+
+    h1 span {
+      color: var(--accent);
+    }
+
     p {
       font-size: 1.05rem;
-      line-height: 1.6;
+      line-height: 1.7;
       color: #cbd5f5;
+      max-width: 560px;
+      margin: 0 auto 18px;
     }
-    a.button {
-      display: inline-block;
-      margin-top: 28px;
-      padding: 14px 28px;
-      background: #6366f1;
-      color: white;
-      text-decoration: none;
+
+    .prompt {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.9rem;
+      color: var(--neon);
+      opacity: 0.9;
+      margin: 28px 0 36px;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 34px;
+      font-size: 1.05rem;
       font-weight: 600;
-      border-radius: 10px;
+      letter-spacing: 0.02em;
+      color: #020617;
+      background: linear-gradient(135deg, var(--accent), #fde047);
+      border-radius: 14px;
+      text-decoration: none;
+      box-shadow:
+        0 0 30px rgba(250,204,21,0.45),
+        inset 0 -2px 0 rgba(0,0,0,0.25);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
-    a.button:hover {
-      background: #4f46e5;
+
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 0 45px rgba(250,204,21,0.65),
+        inset 0 -2px 0 rgba(0,0,0,0.25);
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(203,213,245,0.45);
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>👋 Hi, I’m [Your Name]</h1>
+
+  <div class="terminal">
+    <div class="status">AI Interface Online</div>
+
+    <h1>
+      I’m <span>[Your Name]</span>
+    </h1>
+
     <p>
-      This is my interactive resume.<br/>
-      Instead of reading bullets, talk to an AI version of me.
+      This is my interactive resume.<br />
+      Instead of scanning bullet points, you can talk to an AI version of me.
     </p>
+
     <p>
       Ask about my experience, projects, strengths, or what I’m looking for next.
     </p>
+
+    <div class="prompt">
+      &gt; initiate conversation_
+    </div>
+
     <a
-      class="button"
-      href="https://huggingface.co/spaces/Roronoa099/Cyber_career_agent"
+      class="cta"
+      href="https://huggingface.co/spaces/YOUR_USERNAME/YOUR_SPACE"
       target="_blank"
     >
-      💬 Chat with Me
+      💬 Talk to Me
     </a>
+
+    <div class="footer">
+      Built by me · Powered by AI
+    </div>
   </div>
+
 </body>
 </html>
